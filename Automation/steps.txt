@@ -1,0 +1,13 @@
+1. In frontend use following to get latitude and longitude of user
+
+    ' navigator.geolocation.getCurrentPosition((obj)=>{console.log(obj.coords.latitude, obj.coords.longitude)}) '
+
+    This will provide us latitude and longitude
+
+2. Use following api to get weather info
+
+    ' https://api.openweathermap.org/data/2.5/weather?lat=26.8466937&lon=80.946166&appid=a6962678a5cba51e8db12b46bc87a867 '
+
+3. Use following code to get temperature and humadity
+
+    ' fetch("https://api.openweathermap.org/data/2.5/weather?lat=26.8466937&lon=80.946166&appid=a6962678a5cba51e8db12b46bc87a867").then(data => data.json()).then(data => {console.log(data.main.temp - 273.15); console.log(data.main.humidity)}) '
