@@ -14,55 +14,65 @@
 </head>
 
 <body>
-    <div class="maincontainer">
-    </div>
     <div class="system_card">
         <div class="title">
             CROP RECOMMENDATION SYSTEM
         </div>
 
-        <form>
+        <form id="myForm">
             <div class="form-group">
                 <label for="Nitrogen_amount">Enter Nitrogen Value in Soil : </label>
-                <input type="text" class="form-control placehold" id="Nitrogen" aria-describedby="emailHelp"
-                    placeholder="Enter Nitrogen Value in Soil">
+                <input type="number" class="form-control placehold form_input" id="Nitrogen" aria-describedby="emailHelp"
+                    placeholder="Enter Nitrogen Value in Soil" required>
             </div>
             <div class="form-group">
                 <label for="Phosphorus_amount">Enter Phosphorus Value in Soil : </label>
-                <input type="text" class="form-control placehold" id="Phosphorus"
-                    placeholder="Enter Phosphorus Value in Soil">
+                <input type="number" class="form-control placehold form_input" id="Phosphorus"
+                    placeholder="Enter Phosphorus Value in Soil" required>
             </div>
             <div class="form-group">
                 <label for="Potassium_amount">Enter Potassium Value in Soil : </label>
-                <input type="text" class="form-control placehold" id="potassium"
-                    placeholder="Enter Potassium Value in Soil">
+                <input type="number" class="form-control placehold form_input" id="potassium"
+                    placeholder="Enter Potassium Value in Soil" required>
             </div>
             <div class="form-group">
                 <label for="Rainfall_amount">Enter Average Rainfall in Your Area : </label>
-                <input type="text" class="form-control placehold" id="Rainfall"
-                    placeholder="Enter Average Rainfall in Your Area">
+                <input type="number" class="form-control placehold form_input" id="Rainfall"
+                    placeholder="Enter Average Rainfall in Your Area" required>
             </div>
             <div class="form-group">
                 <label for="Humidity_amount">Enter Average Humidity in your Area : </label>
-                <input type="text" class="form-control placehold" id="Humidity"
-                    placeholder="Enter Average Humidity in your Area">
+                <input type="number" class="form-control placehold form_input" id="Humidity"
+                    placeholder="Enter Average Humidity in your Area" required>
             </div>
             <div class="form-group">
-                <label for="Temprature_amount">Enter Average Temperature in your Area : </label>
-                <input type="text" class="form-control placehold" id="Temperature"
-                    placeholder="Enter Average Temperature in your Area">
-            </div>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="check_automation_true">
-                <label class="form-check-label" for="exampleCheck1">Check me out to Take Humidity and Temprature
-                    Automatically</label>
+                <label for="Temprature_amount">Enter Average Temperature in your Area in kelvin : </label>
+                <input type="number" class="form-control placehold form_input" id="Temperature"
+                    placeholder="Enter Average Temperature in your Area" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
 
-    <script src="script.js"></script>
+    <script>
+        window.onload = () => {
+            navigator.geolocation.getCurrentPosition((obj) => {
+                let lat = obj.coords.latitude;
+                let lon = obj.coords.longitude;
+                fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=a6962678a5cba51e8db12b46bc87a867`).then(data => data.json()).then(data => {
+                    document.getElementById("Temperature").value = data.main.temp - 273.15;
+                    document.getElementById("Humidity").value = data.main.humidity;
+                    alert("Temperature and Humidity will be inserted according to your current location")
+                    console.log(data.main.temp - 273.15); console.log(data.main.humidity)
+                })
+            })
+        }
+        document.getElementById("myForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            alert("Form submitted")
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

@@ -16,20 +16,15 @@ body {
     /* background-image: url("https://wallpapercosmos.com/w/middle-retina/c/9/7/269034-3840x2160-desktop-4k-farm-wallpaper-image.jpg"); */
 }
 
-.maincontainer {
-    /* width: 100vw; */
-    /* height: 100vh; */
-}
-
 .system_card {
-    width: 65%;
-    height: 95%;
+    width: 75%;
+    min-width: 300px;
     border: 2px solid rgb(255, 255, 255, .2);
     border-radius: 10px;
     background: transparent;
     backdrop-filter: blur(10px);
-    /* backdrop-filter: blur(8px); */
     padding: 12px 10px;
+    margin: 20px auto;
 }
 
 .title {
@@ -38,8 +33,6 @@ body {
     font-family: 'Libre Baskerville', serif;
     color: var(--first-color);
 }
-
-
 
 form {
     margin-top: 20px;
@@ -56,122 +49,29 @@ form label {
 }
 
 /* Align or remove this to remove the transparent filter of input ande color opf input  */
-#Nitrogen {
-    background-color: transparent;
-    border: 2px solid black;
+.form_input {
+    background-color: transparent !important;
+    border: 2px solid black !important;
+    color: var(--first-color) !important;
 }
 
-#Nitrogen::placeholder {
-    color: var(--first-color);
-
-}
-
-#Phosphorus {
-    background-color: transparent;
-    border: 2px solid black;
-}
-
-#Phosphorus::placeholder {
-    color: var(--first-color);
-}
-
-#potassium {
-    background-color: transparent;
-    border: 2px solid black;
-}
-
-#potassium::placeholder {
-    color: var(--first-color);
-}
-
-#Rainfall {
-    background-color: transparent;
-    border: 2px solid black;
-}
-
-#Rainfall::placeholder {
-    color: var(--first-color);
-}
-
-#Humidity {
-    background-color: transparent;
-    border: 2px solid black;
-}
-
-#Humidity::placeholder {
-    color: var(--first-color);
-}
-
-#Temperature {
-    background-color: transparent;
-    border: 2px solid black;
-}
-
-#Temperature::placeholder {
-    color: var(--first-color);
+.form_input::placeholder {
+    color: rgba(245, 245, 245, 0.61) !important;
 }
 
 /* media query */
-@media screen and (min-width: 800px)and (max-width:900px){
+@media only screen and (max-width: 1050px){
 .title {
-        font-size: 34px;
-    }
-    .system_card{
-        height:86%;
-        width:70%;
-    }
-}
-@media screen and (min-width:576px) and (max-width: 800px)
-{
-    .title{
-        font-size: 32px;
-    }
-    .system_card {
-            
-            width: 70%;
-        }
-   form
-    {
-        margin-top:10px
-    }
-
-    
-}
-@media screen and (min-width:480px)and (max-width: 576px) {
-    .title {
-        font-size: 27px;
-    }
-
-    .system_card {
-
-        width: 75%;
-        
-    }
-
-    .form {
-        margin-top: 8px
-    }
-
-
-}
-@media screen and (min-width:400px)and (max-width: 480px) {
-    .title {
         font-size: 22px;
     }
-
-    .system_card {
-
-        width: 75%;
-        height:100%;
-        padding: 8px 4px;
-        
-
+}
+@media only screen and (max-width: 700px){
+.title {
+        font-size: 18px;
     }
-    label{
-        font-size: 17px;
-    }
-
-    .form {
-        margin-top: 0px
+}
+@media only screen and (max-width: 400px){
+.title {
+        font-size: 16px;
     }
 }
