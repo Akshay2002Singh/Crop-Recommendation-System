@@ -21,33 +21,33 @@
 
         <form id="myForm">
             <div class="form-group">
-                <label for="Nitrogen_amount">Enter Nitrogen Value in Soil : </label>
-                <input type="number" class="form-control placehold form_input" id="Nitrogen" aria-describedby="emailHelp"
+                <label for="Nitrogen">Enter Nitrogen Value in Soil : </label>
+                <input type="number" class="form-control form_input" id="Nitrogen"
                     placeholder="Enter Nitrogen Value in Soil" required>
             </div>
             <div class="form-group">
-                <label for="Phosphorus_amount">Enter Phosphorus Value in Soil : </label>
-                <input type="number" class="form-control placehold form_input" id="Phosphorus"
+                <label for="Phosphorus">Enter Phosphorus Value in Soil : </label>
+                <input type="number" class="form-control form_input" id="Phosphorus"
                     placeholder="Enter Phosphorus Value in Soil" required>
             </div>
             <div class="form-group">
-                <label for="Potassium_amount">Enter Potassium Value in Soil : </label>
-                <input type="number" class="form-control placehold form_input" id="Potassium"
+                <label for="Potassium">Enter Potassium Value in Soil : </label>
+                <input type="number" class="form-control form_input" id="Potassium"
                     placeholder="Enter Potassium Value in Soil" required>
             </div>
             <div class="form-group">
-                <label for="Rainfall_amount">Enter Average Rainfall in Your Area : </label>
-                <input type="number" class="form-control placehold form_input" id="Rainfall"
+                <label for="Rainfall">Enter Average Rainfall in Your Area : </label>
+                <input type="number" class="form-control form_input" id="Rainfall"
                     placeholder="Enter Average Rainfall in Your Area" required>
             </div>
             <div class="form-group">
-                <label for="Humidity_amount">Enter Average Humidity in your Area : </label>
-                <input type="number" class="form-control placehold form_input" id="Humidity"
+                <label for="Humidity">Enter Average Humidity in your Area : </label>
+                <input type="number" class="form-control form_input" id="Humidity"
                     placeholder="Enter Average Humidity in your Area" required>
             </div>
             <div class="form-group">
-                <label for="Temprature_amount">Enter Average Temperature in your Area in kelvin : </label>
-                <input type="number" class="form-control placehold form_input" id="Temperature"
+                <label for="Temprature">Enter Average Temperature in your Area in C : </label>
+                <input type="number" step="any" class="form-control form_input" id="Temperature"
                     placeholder="Enter Average Temperature in your Area" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -69,7 +69,7 @@
             })
         }
         document.getElementById("myForm").addEventListener("submit", (e) => {
-            
+
             e.preventDefault();
 
             let nitrogen=document.getElementById("Nitrogen").value
