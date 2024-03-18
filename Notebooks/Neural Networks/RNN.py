@@ -30,7 +30,7 @@ X_normalized = scaler.fit_transform(X)
 
 for i in range(iterations):
     # Splitting Dataset into training and testing sets
-    X_train, X_test, Y_train, Y_test = train_test_split(X_normalized, Y, test_size=0.2, random_state=42)
+    X_train, X_test, Y_train, Y_test = train_test_split(X_normalized, Y, test_size=0.15, random_state=42)
 
     # Reshape features for RNN input
     X_train_rnn = X_train.reshape(-1, 1, X_train.shape[1])
