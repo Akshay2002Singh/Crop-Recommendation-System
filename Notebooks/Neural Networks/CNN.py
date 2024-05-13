@@ -10,6 +10,8 @@ iterations = 6    # accuracy 96
 
 # Load the dataset
 data = pd.read_csv("./Datasets/Crop_Recommendation_Dataset.csv")
+data.drop('ph',axis=1,inplace=True)
+
 label_encoder = LabelEncoder()
 data['label'] = label_encoder.fit_transform(data['label'])
 
