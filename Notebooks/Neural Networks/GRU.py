@@ -6,7 +6,7 @@ from keras.layers import Dense, GRU
 from sklearn.preprocessing import LabelEncoder
 
 results = ''
-iterations = 5
+iterations = 5 # accuracy 94
 
 # Load the dataset
 data = pd.read_csv("./Datasets/Crop_Recommendation_Dataset.csv")

@@ -6,7 +6,7 @@ from keras.layers import Dense, LSTM
 from sklearn.preprocessing import LabelEncoder
 
 results = ''
-iterations = 2
+iterations = 5  # accuracy 95
 
 # Load the dataset
 data = pd.read_csv("./Datasets/Crop_Recommendation_Dataset.csv")
@@ -14,7 +14,7 @@ label_encoder = LabelEncoder()
 data['label'] = label_encoder.fit_transform(data['label'])
 
 # Convert string columns to numeric type
-numeric_columns = ['N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall']
+numeric_columns = ['N', 'P', 'K', 'temperature', 'humidity', 'rainfall']
 data[numeric_columns] = data[numeric_columns].apply(pd.to_numeric, errors='coerce')
 
 # Drop rows with NaN values
