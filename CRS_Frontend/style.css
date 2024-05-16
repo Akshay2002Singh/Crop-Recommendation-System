@@ -4,15 +4,13 @@
     box-sizing: border-box;
 }
 :root{
-   --first-color:whitesmoke;
-   --second-color:black;
-
+   --first-color:black;
 }
 body {
-    /* background-image: url("https://wallpapercosmos.com/w/middle-retina/a/e/0/268940-3840x2160-desktop-4k-farm-background-photo.jpg"); */
+    background-image: url("https://wallpapercosmos.com/w/middle-retina/a/e/0/268940-3840x2160-desktop-4k-farm-background-photo.jpg");
     /* background-image: url("https://c4.wallpaperflare.com/wallpaper/337/706/397/landscape-aerial-view-farm-trees-wallpaper-preview.jpg");   */
     /* background-image: url("https://wallpapercosmos.com/w/middle-retina/c/5/e/268946-3840x2160-desktop-4k-farm-wallpaper-photo.jpg"); */
-    background-image: url("https://wallpapercosmos.com/w/middle-retina/c/a/7/268957-3840x2160-desktop-4k-farm-wallpaper-image.jpg");
+    /* background-image: url("https://wallpapercosmos.com/w/middle-retina/c/a/7/268957-3840x2160-desktop-4k-farm-wallpaper-image.jpg"); */
     /* background-image: url("https://wallpapercosmos.com/w/middle-retina/c/9/7/269034-3840x2160-desktop-4k-farm-wallpaper-image.jpg"); */
 }
 
@@ -22,9 +20,9 @@ body {
     border: 2px solid rgb(255, 255, 255, .2);
     border-radius: 10px;
     background: transparent;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(40px);
     padding: 12px 10px;
-    margin: 20px auto;
+    margin: 15px auto;
 }
 
 .title {
@@ -40,8 +38,9 @@ form {
 }
 
 form label {
-    color: black;
-    font-weight: 720;
+    color: white;
+    font-size: 20px;
+    /* font-weight: 500; */
 }
 
 .btn {
@@ -50,13 +49,68 @@ form label {
 
 /* Align or remove this to remove the transparent filter of input ande color opf input  */
 .form_input {
-    background-color: transparent !important;
-    border: 2px solid black !important;
+    background-color: rgb(223, 208, 208) !important;
+    border: 2px solid rgb(43, 42, 42) !important;
     color: var(--first-color) !important;
+    font-weight: 500;
 }
 
 .form_input::placeholder {
-    color: rgba(245, 245, 245, 0.61) !important;
+    color: rgba(0, 0, 0, 0.512) !important;
+}
+
+#model_container{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.551);
+    display: none;
+}
+#model{
+    width: 75%;
+    min-width: 280px;
+    max-width: 400px;
+    min-height: 120px;
+    border: 2px solid rgba(0, 0, 0, 0.644);
+    border-radius: 10px;
+    background-color: rgb(208, 208, 208);
+    padding: 12px 10px;
+    margin: 15px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+}
+
+#model>span {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#model>button {
+    margin-top: 20px;
+    width: 120px;
+    border: 1px solid black;
+    border-radius: 6px;
+    font-size: 20px;
+    background-color: red;
+    color: white;
+}
+
+#model>button:hover{
+    cursor: pointer;
+}
+
+#loader{
+    display: none;
+    width: 75%;
+    min-width: 280px;
+    max-width: 400px;
+    margin: 10px auto;
+    border-radius: 10px;
+    background-color: white;
+    border-color: black;
 }
 
 /* media query */

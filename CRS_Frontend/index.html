@@ -53,6 +53,13 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+    <div id="model_container">
+        <div id="model">
+            <span>Best crop for you is <strong id="crop_name"></strong></span>
+            <Button id="close_model">Close</Button>
+        </div>
+        <img src="./farming-farm.gif" alt="Loader" id="loader">
+    </div>
 
 
     <script>
@@ -69,20 +76,32 @@
             })
         }
         document.getElementById("myForm").addEventListener("submit", (e) => {
-
             e.preventDefault();
-
-            let nitrogen=document.getElementById("Nitrogen").value
-            let phosphorus=document.getElementById("Phosphorus").value
-            let potassium=document.getElementById("Potassium").value
-            let temp=document.getElementById("Temperature").value
-            let humidity=document.getElementById("Humidity").value
-            let rainfall=document.getElementById("Rainfall").value
+            document.getElementById("model_container").style.display = 'block';
+            document.getElementById("loader").style.display = 'block';
+            let nitrogen = document.getElementById("Nitrogen").value
+            let phosphorus = document.getElementById("Phosphorus").value
+            let potassium = document.getElementById("Potassium").value
+            let temp = document.getElementById("Temperature").value
+            let humidity = document.getElementById("Humidity").value
+            let rainfall = document.getElementById("Rainfall").value
 
             fetch(`https://crs.pythonanywhere.com/predict/?N=${nitrogen}&P=${phosphorus}&K=${potassium}&temperature=${temp}&humidity=${humidity}&rainfall=${humidity}`)
-            .then((res)=>res.json())
-            .then((data)=>alert(`Predicted crop is ${data.crop}`))
-            
+                .then((res) => res.json())
+                .then((data) => {
+                    document.getElementById('crop_name').innerText = data.crop;
+                    document.getElementById("loader").style.display = 'none';
+                    document.getElementById("model_container").style.display = 'block';
+                    document.getElementById("model").style.display = 'flex';
+                }).catch((e) => {
+                    document.getElementById("model_container").style.display = 'none';
+                    document.getElementById("loader").style.display = 'none';
+                })
+        });
+        document.getElementById("close_model").addEventListener('click', (e) => {
+            document.getElementById('crop_name').innerText = "";
+            document.getElementById("model_container").style.display = 'none';
+            document.getElementById("model").style.display = 'none';
         });
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
