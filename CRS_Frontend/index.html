@@ -21,37 +21,44 @@
 
         <form id="myForm">
             <div class="form-group">
-                <label for="Nitrogen">Nitrogen Value of Given Soil Sample : </label>
+                <label for="Nitrogen">Enter Nitrogen Value in Soil:</label>
                 <input type="number" class="form-control form_input" id="Nitrogen"
                     placeholder="Enter Nitrogen Value in Soil" required>
             </div>
             <div class="form-group">
-                <label for="Phosphorus">Phosphorus Value of Given Soil Sample : </label>
+                <label for="Phosphorus">Enter Phosphorus Value in Soil:</label>
                 <input type="number" class="form-control form_input" id="Phosphorus"
                     placeholder="Enter Phosphorus Value in Soil" required>
             </div>
             <div class="form-group">
-                <label for="Potassium">Potassium Value of Given Soil Sample : </label>
+                <label for="Potassium">Enter Potassium Value in Soil:</label>
                 <input type="number" class="form-control form_input" id="Potassium"
                     placeholder="Enter Potassium Value in Soil" required>
             </div>
             <div class="form-group">
-                <label for="Rainfall">Enter Average Rainfall in Your Area : </label>
+                <label for="Rainfall">Enter Average Rainfall in Your Area:</label>
                 <input type="number" step="any" class="form-control form_input" id="Rainfall"
                     placeholder="Enter Average Rainfall in Your Area" required>
             </div>
             <div class="form-group">
-                <label for="Humidity">Enter Average Humidity in your Area : </label>
+                <label for="Humidity">Enter Average Humidity in your Area:</label>
                 <input type="number" step="any" class="form-control form_input" id="Humidity"
                     placeholder="Enter Average Humidity in your Area" required>
             </div>
             <div class="form-group">
-                <label for="Temprature">Enter Average Temperature in your Area in C : </label>
+                <label for="Temprature">Enter Average Temperature in your Area in C:</label>
                 <input type="number" step="any" class="form-control form_input" id="Temperature"
                     placeholder="Enter Average Temperature in your Area" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+    </div>
+    <div id="model_container">
+        <div id="model">
+            <span>Best crop for you is <strong id="crop_name"></strong></span>
+            <Button id="close_model">Close</Button>
+        </div>
+        <img src="./farming-farm.gif" alt="Loader" id="loader">
     </div>
 
 
@@ -69,20 +76,32 @@
             })
         }
         document.getElementById("myForm").addEventListener("submit", (e) => {
-
             e.preventDefault();
-
-            let nitrogen=document.getElementById("Nitrogen").value
-            let phosphorus=document.getElementById("Phosphorus").value
-            let potassium=document.getElementById("Potassium").value
-            let temp=document.getElementById("Temperature").value
-            let humidity=document.getElementById("Humidity").value
-            let rainfall=document.getElementById("Rainfall").value
+            document.getElementById("model_container").style.display = 'block';
+            document.getElementById("loader").style.display = 'block';
+            let nitrogen = document.getElementById("Nitrogen").value
+            let phosphorus = document.getElementById("Phosphorus").value
+            let potassium = document.getElementById("Potassium").value
+            let temp = document.getElementById("Temperature").value
+            let humidity = document.getElementById("Humidity").value
+            let rainfall = document.getElementById("Rainfall").value
 
             fetch(`https://crs.pythonanywhere.com/predict/?N=${nitrogen}&P=${phosphorus}&K=${potassium}&temperature=${temp}&humidity=${humidity}&rainfall=${humidity}`)
-            .then((res)=>res.json())
-            .then((data)=>alert(`Predicted crop is ${data.crop}`))
-            
+                .then((res) => res.json())
+                .then((data) => {
+                    document.getElementById('crop_name').innerText = data.crop;
+                    document.getElementById("loader").style.display = 'none';
+                    document.getElementById("model_container").style.display = 'block';
+                    document.getElementById("model").style.display = 'flex';
+                }).catch((e) => {
+                    document.getElementById("model_container").style.display = 'none';
+                    document.getElementById("loader").style.display = 'none';
+                })
+        });
+        document.getElementById("close_model").addEventListener('click', (e) => {
+            document.getElementById('crop_name').innerText = "";
+            document.getElementById("model_container").style.display = 'none';
+            document.getElementById("model").style.display = 'none';
         });
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
