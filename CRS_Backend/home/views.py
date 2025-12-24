@@ -36,11 +36,36 @@ def predict(request):
         21 : 'jute',
         22 : 'coffee'
     }
-    # print(os.listdir())
-    # Load and predict crop
-    input_values = [request.GET.get('N'),request.GET.get('P'),request.GET.get('K'),request.GET.get('temperature'),request.GET.get('humidity'),request.GET.get('rainfall')]
-    # print(input_values)
-    loaded_model = load("home/CRS_RandomForest_model.joblib")
-    output = loaded_model.predict([input_values])
-    return HttpResponse(json.dumps({"message" : "Backend is working",
-                                    "crop" : f"{digit_to_crop[int(output)]}"}))
+    
+    try:
+        # Get and convert input values to float
+        n = float(request.GET.get('N', 0))
+        p = float(request.GET.get('P', 0))
+        k = float(request.GET.get('K', 0))
+        temp = float(request.GET.get('temperature', 0))
+        hum = float(request.GET.get('humidity', 0))
+        rain = float(request.GET.get('rainfall', 0))
+        input_values = [n, p, k, temp, hum, rain]
+
+        # Load model
+        loaded_model = load("home/CRS_RandomForest_model.joblib")
+        
+        # Compatibility hack for different scikit-learn versions
+        if hasattr(loaded_model, 'estimators_'):
+            for est in loaded_model.estimators_:
+                if not hasattr(est, 'monotonic_cst'):
+                    est.monotonic_cst = None
+        
+        # Predict crop
+        output = loaded_model.predict([input_values])
+        crop_id = int(output[0])
+        
+        return HttpResponse(json.dumps({
+            "message": "Prediction successful",
+            "crop": digit_to_crop.get(crop_id, "unknown")
+        }), content_type="application/json")
+        
+    except Exception as e:
+        return HttpResponse(json.dumps({
+            "error": str(e)
+        }), status=500, content_type="application/json")
